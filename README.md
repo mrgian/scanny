@@ -1,6 +1,6 @@
 # Scanny
 
-Simple domain scanner wirtten in Rust
+Simple domain and port scanner wirtten in Rust
 
 ## Usage
 ```
@@ -13,32 +13,10 @@ git clone https://github.com/mrgian/scanny.git
 cd scanny
 cargo run -- <domain.com>
 ```
-## Example
-```
-scanny univpm.it
-```
-
-and you'll get:
-
-```
-aule.univpm.it
-prodapps.econ.univpm.it
-www.cad.univpm.it
-iris.univpm.it
-psa.univpm.it
-iplanta.univpm.it
-yourfuturefestival.univpm.it
-gretlml.univpm.it
-afp.univpm.it
-survey.univpm.it
-www.medicinadellavoro.univpm.it
-foritaal2013.univpm.it
-...
-```
 
 ## To do
-Scanny is only able to scan for subdomains at the moment, but I will add many more features in the future, such as:
+Scanny is only able to scan for subdomains and open ports at the moment, but I will add many more features in the future, such as:
 
-- Port scanner (coming very soon)
+- Make it multithreaded
 - Vulnerability scanner
 - And many more
