@@ -22,8 +22,8 @@ pub fn enumerate(http_client: &Client, target: &str) -> Result<Vec<Subdomain>, E
                 .split("\n")
                 .map(|subdomain| subdomain.trim().to_string())
                 .collect::<Vec<String>>()
-        })
-        .flatten()
+        }) //get subdomains for each entry
+        .flatten() //flatten to get an even list
         .filter(|subdomain| subdomain != target)
         .filter(|subdomain| !subdomain.contains("*"))
         .collect();

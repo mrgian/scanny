@@ -1,12 +1,17 @@
 use std::{env, time::Duration};
 
+use model::Subdomain;
 use reqwest::{blocking::Client, redirect};
 mod error;
 use error::Error;
 
+mod consts;
 mod model;
 mod subdomains;
 use subdomains::enumerate;
+
+mod ports;
+use ports::scan_ports;
 
 fn main() -> Result<(), anyhow::Error> {
     let args: Vec<String> = env::args().collect();
@@ -23,10 +28,19 @@ fn main() -> Result<(), anyhow::Error> {
         .timeout(http_timeout)
         .build()?;
 
-    let subdomains = enumerate(&http_client, target)?;
+    let subdomains: Vec<Subdomain> = enumerate(&http_client, target)?
+        .into_iter()
+        .map(scan_ports)
+        .collect();
 
     for subdomain in subdomains {
-        println!("{}", subdomain.domain)
+        println!("Domain: {}", &subdomain.domain);
+        for port in &subdomain.open_ports {
+            println!("Open ports:\n");
+            println!("    {}", port.port);
+        }
+
+        println!();
     }
 
     Ok(())
