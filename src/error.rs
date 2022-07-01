@@ -2,7 +2,7 @@ use thiserror::Error;
 
 #[derive(Error, Debug, Clone)]
 pub enum Error {
-    #[error("Usage: scanny <domain.com>")]
+    #[error("\nUsage: scanny <domain.com>")]
     CliUsage,
     #[error("Reqwest: {0}")]
     Reqwest(String),
