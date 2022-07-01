@@ -18,7 +18,7 @@ fn main() -> Result<(), anyhow::Error> {
     let subdomains = enumerate(&http_client, target)?;
 
     for subdomain in subdomains {
-        println!("{}", subdomain)
+        println!("{}", subdomain.domain)
     }
 
     Ok(())
