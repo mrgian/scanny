@@ -35,8 +35,8 @@ fn main() -> Result<(), anyhow::Error> {
 
     for subdomain in subdomains {
         println!("Domain: {}", &subdomain.domain);
+        println!("Open ports:");
         for port in &subdomain.open_ports {
-            println!("Open ports:\n");
             println!("    {}", port.port);
         }
 
